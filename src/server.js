@@ -1,11 +1,13 @@
 const express = require('express');
 const app = express();
 const NoteRouter = require('./routes/Note')
+require('dotenv').config();
+
 
 app.use(express.json())
 
 const mongoose = require('mongoose');
-mongoose.connect("mongodb+srv://nikunj:Nikunj%40123@cluster0.cgzt1.mongodb.net/notesapp?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect(process.env.MONGODBURI)
 .then(function(){
     app.get('/', (req, res)=>{
         res.send("This is the Home Page");
